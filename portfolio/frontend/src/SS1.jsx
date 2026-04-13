@@ -11,6 +11,8 @@ import React, {  useEffect } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
+import AsteroidBelt from './Components/AsteroidBelt'
+
 
 export default function Model(props) {
   const group = React.useRef()
@@ -18,13 +20,11 @@ export default function Model(props) {
   const { actions,names } = useAnimations(animations, group)
 
 
-  console.log(names)
+
+
+
 const yAxis = new THREE.Vector3(0, 1, 0)
-useEffect(() => {
-  if (actions["Earth|Planet.009Action"]) {
-    actions["Earth|Planet.009Action"].play()
-  }
-}, [actions])
+
 useEffect(() => {
   const root = group.current
   if (!root) return
@@ -44,7 +44,7 @@ useFrame((state, delta) => {
   if (!group.current) return
 
   const mercuryPivot = group.current.getObjectByName("MercuryPivot");
-  // const earthPivot = group.current.getObjectByName("EarthPivot");
+  const earthPivot = group.current.getObjectByName("EarthPivot");
   const jupiterPivot = group.current.getObjectByName("JupiterPivot");
   const marsPivot = group.current.getObjectByName("MarsPivot");
   const neptunePivot = group.current.getObjectByName("NeptunePivot");
@@ -57,9 +57,9 @@ useFrame((state, delta) => {
   if (mercuryPivot) {
     mercuryPivot.rotation.y += delta * 1
   }
-  // if (earthPivot) {
-  //   earthPivot.rotation.y += delta * 0.22
-  // }
+  if (earthPivot) {
+    earthPivot.rotation.y += delta * 0.22
+  }
 
   if (jupiterPivot) {
     jupiterPivot.rotation.y += delta * 0.25
@@ -84,14 +84,7 @@ useFrame((state, delta) => {
   }
   
   
-  // if (earth) {
-  //   earth.rotateOnWorldAxis(yAxis, delta * 0.5)
-  // }
-// const moonOrbit = group.current.getObjectByName("MoonOrbit")
 
-// if (moonOrbit) {
-//   moonOrbit.rotation.y += delta * 3
-// }
 })
 
 
@@ -114,7 +107,8 @@ function Orbit({ radius }) {
 
   return (
     <line geometry={geometry}>
-      <lineBasicMaterial color="white" />
+      <lineBasicMaterial color="#888888"   transparent 
+  opacity={0.15} />
     </line>
   )
 }
@@ -125,10 +119,13 @@ function Orbit({ radius }) {
 <Orbit radius={19.5} />
 <Orbit radius={23.8} />
 <Orbit radius={28} />
-<Orbit radius={40} />
-<Orbit radius={50} />
+<Orbit radius={45} />
 <Orbit radius={58.5} />
-<Orbit radius={64} />
+<Orbit radius={70} />
+<Orbit radius={79} />
+
+<AsteroidBelt inner={33} outer={38} count={700} />
+
       <group name="Sketchfab_Scene">
         <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]}>
           <group name="c61b8ace641b4cd8ad723ab77de2df1cfbx" rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
@@ -137,9 +134,12 @@ function Orbit({ radius }) {
 
 
   <group position={[23.8, 0, 0]}>
-   
+   <group name="EarthPivot">
                 <group name="Earth" rotation={[-Math.PI / 2, 0, Math.PI / 2]} scale={100}>
-                  <mesh name="Earth_earth_0" geometry={nodes.Earth_earth_0.geometry} material={materials.earth} />
+                  <mesh name="Earth_earth_0" geometry={nodes.Earth_earth_0.geometry} material={materials.earth} onClick={(e) => {
+    e.stopPropagation()
+    console.log("Earth clicked 🌍")
+  }}/>
                
                 
                   <group name="Moon" position={[25.758, 0, 0]}  >
@@ -148,15 +148,17 @@ function Orbit({ radius }) {
                 </group>
                 </group>
                 
-
+</group>
 
 
 
                 <group name="JupiterPivot">
-                <group name="Jupiter" rotation={[-Math.PI / 2, 0, 0.262]} scale={100}>
-                  <mesh name="Jupiter_jupiter_0" geometry={nodes.Jupiter_jupiter_0.geometry} material={materials.jupiter} />
+                <group name="Jupiter" rotation={[-Math.PI / 2, 0, 0.262]} scale={150}>
+                  <mesh name="Jupiter_jupiter_0" 
+                  position={[-10, 0, 0]} geometry={nodes.Jupiter_jupiter_0.geometry} material={materials.jupiter} />
                 </group>
                 </group>
+                
                 <group name="MarsPivot">
                 <group name="Mars" rotation={[-Math.PI / 2, 0, Math.PI / 4]} scale={100}>
                   <mesh name="Mars_mars_0" geometry={nodes.Mars_mars_0.geometry} material={materials.mars} />
@@ -169,7 +171,7 @@ function Orbit({ radius }) {
                 </group>
                 <group name="NeptunePivot">
                 <group name="Neptune" position={[-0.001, 0, -0.001]} rotation={[-Math.PI / 2, 0, -Math.PI / 4]} scale={100}>
-                  <mesh name="Neptune_neptune_0" geometry={nodes.Neptune_neptune_0.geometry} material={materials.neptune} />
+                  <mesh name="Neptune_neptune_0" position={[15, 0, 0]}geometry={nodes.Neptune_neptune_0.geometry} material={materials.neptune} />
                 </group>
                 </group>
                 <group name="PlutoPivot">
@@ -180,17 +182,39 @@ function Orbit({ radius }) {
                 <group name="SaturnPivot">
                 <group name="Saturn" rotation={[-Math.PI / 2, 0.611, 0]} scale={100}>
                   <group name="SaturnRing" position={[41.778, 0, 29.247]} rotation={[0, -Math.PI / 4, 0]}>
-                    <mesh name="SaturnRing_Material_0" geometry={nodes.SaturnRing_Material_0.geometry} material={materials.Material} />
+                    <mesh name="SaturnRing_Material_0" position={[7, 0, 0]} geometry={nodes.SaturnRing_Material_0.geometry} material={materials.Material} />
                   </group>
-                  <mesh name="Saturn_saturn_0" geometry={nodes.Saturn_saturn_0.geometry} material={materials.saturn} />
+                  <mesh name="Saturn_saturn_0" position={[6, 0, 5]}geometry={nodes.Saturn_saturn_0.geometry} material={materials.saturn} />
                 </group>
                 </group>
-                <group name="Sun" rotation={[-Math.PI / 2, 0, 0]} scale={100}>
+                <group name="Sun" rotation={[-Math.PI / 2, 0, 0]} scale={140}>
                   <mesh name="Sun_sun_0" geometry={nodes.Sun_sun_0.geometry} material={materials.material} />
+                  {/* <meshStandardMaterial
+  emissive="#ff6600"
+  emissiveIntensity={4}
+  toneMapped={false}
+/> */}
+<mesh>
+  <sphereGeometry args={[4.5, 32, 32]} />
+  <meshBasicMaterial
+    color="#ffaa33"
+    transparent
+    opacity={0.25}
+  />
+</mesh>
+<mesh>
+  <sphereGeometry args={[3.5, 32, 32]} />
+  <meshBasicMaterial
+    color="#ffaa33"
+    transparent
+    opacity={0.2}
+  />
+</mesh>
                 </group>
                 <group name="UranusPivot">
                 <group name="Uranus" rotation={[-Math.PI / 2, 0, -0.436]} scale={100}>
-                  <mesh name="Uranus_uranus_0" geometry={nodes.Uranus_uranus_0.geometry} material={materials.uranus} />
+                  <mesh name="Uranus_uranus_0" 
+                  position={[12, 0, 0]}geometry={nodes.Uranus_uranus_0.geometry} material={materials.uranus} />
                 </group>
                 </group>
                 <group name="VenusPivot">
@@ -203,9 +227,9 @@ function Orbit({ radius }) {
                     <group name="Object_20" />
                   </group>
                 </group>
-                <group name="Space" position={[359.942, 0, 0]} rotation={[-Math.PI / 2, 0, -Math.PI / 2]} scale={100}>
+                {/* <group name="Space" position={[459.942, 0, 0]} rotation={[-Math.PI / 2, 0, -Math.PI / 2]} scale={150}>
                   <mesh name="Space_space_0" geometry={nodes.Space_space_0.geometry} material={materials.space} />
-                </group>
+                </group> */}
                 
               </group>
               

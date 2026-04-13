@@ -6,13 +6,13 @@ import {useControls} from 'leva'
 import { SpotLightHelper } from 'three'
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader'
 import SS1 from './SS1'
-import SS2 from './SS2'
+import Navbar from './Components/Navbar'
+// import { Stars } from '@react-three/drei'
+import * as THREE from 'three'
+import FixedStars from './Components/FixedStars'
 
-// function Model(){
-//   const result=useLoader(GLTFLoader,'/solar_system_animation/scene.gltf')
-//   // const result=useLoader(GLTFLoader,'/psx_solar_system/scene.gltf')
-//   return <primitive object={result.scene} scale={0.052} position={[0,0,0]} />
-// }
+import CameraMotion from './Components/CameraMotion'
+
 
 function Model(){
   return(
@@ -28,41 +28,80 @@ function Model(){
 
 const App = () => {
 
-  // const {color} = useControls({
-  //   color: '#00bfff'
-  // })
+  
+  const [autoRotate, setAutoRotate] = useState(true)
+const timeoutRef = useRef()
+
   return (
-    <div id='canvas-container' >
-      <Canvas shadows style={{backgroundColor:'black'}}>
+    <div id='canvas-container' style={{ position: 'relative', width: '100vw', height: '100vh' }} >
+
+<div style={{
+  position: 'absolute',
+  top: 130,
+  left: 150,
+  color: '#00ffcc',
+  fontFamily: 'monospace',
+  fontSize: '14px',
+  zIndex: 20
+}}>
+  SYSTEM: ONLINE 🚀 <br />
+  TARGET: SRUJANA CORE ☀️
+</div>
+<Navbar />
+   
+      <Canvas shadows style={{backgroundColor:'black'}} camera={{ position:  [6, 3, 6], fov: 55 }}>
 
         <GizmoHelper alignment="bottom-right" margin={[80, 80]}>
           <GizmoViewcube/>
         </GizmoHelper>
 
-{/* <gridHelper args={[10]} /> */}
-        <axesHelper args={[10]} />
-        <mesh position={[-2,2,-1]} rotation={[0,0,Math.PI]} scale={[2,0.5,2]} castShadow >
-          {/* <sphereGeometry args={[3,80,80]}/> */}
-          {/* <meshBasicMaterial wireframe color="pink"/> */}
-          {/* <torusKnotGeometry args={[1.7,0.3,256,256]} receiveShadow /> */}
-         
-          {/* <meshToonMaterial color={color} /> */}
-          {/* <meshPhongMaterial color='black'/> */}
-        </mesh>
-        <OrbitControls />
-        {/* <FirstPersonControls  autoForward/> */}
-          <pointLight position={[0,0,0]} intensity={47}  castShadow/>
+       <OrbitControls 
+  onStart={() => {
+    setAutoRotate(false)
+    clearTimeout(timeoutRef.current)
 
-          {/* <LightWithHelper /> */}
+    timeoutRef.current = setTimeout(() => {
+      setAutoRotate(true)
+    }, 3000)
+    
+  }
+  }
+  minDistance={4}
+  maxDistance={20}
+  minPolarAngle={Math.PI / 3}
+  maxPolarAngle={Math.PI / 2}
+/>
+        
+            <pointLight position={[0,0,0]} intensity={60} distance={200} color="#ffecc5"  castShadow/>
 
-          {/* <mesh rotation={[-Math.PI/2,0,0]} position={[0,0,0]} receiveShadow>
-            <planeGeometry args={[100,100]} />
-            <meshStandardMaterial color='white' />
-            
-          </mesh> */}
-
+            <mesh rotation={[Math.PI / 2, 0, 0]}>
+              <ringGeometry args={[60, 80, 64]} />
+              <meshBasicMaterial 
+                color="#8888ff"
+                side={THREE.DoubleSide}
+                transparent
+                opacity={0.15}
+              />
+            </mesh>
           <Model />
+
+          <FixedStars />
+          <CameraMotion enabled={autoRotate} />
+
       </Canvas>
+         <img 
+  src="/frame1.png" 
+  alt="frame"
+  style={{
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    pointerEvents: 'none',
+    zIndex: 10
+  }}
+/>
     </div>
   )
 }
