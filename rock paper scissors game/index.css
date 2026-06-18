@@ -1,0 +1,427 @@
+body{
+    background:url('images/background3.png') no-repeat;
+    background-size: cover;
+    overflow: hidden;
+}
+.container{ 
+    display: flex;
+    justify-content: center;
+    align-items:end;
+    position: relative;
+    
+    height: 100vh;
+}
+.table{
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 3;
+}
+.icecream{
+    position: absolute;
+    top: -10%;
+    left: 35%;
+    z-index: 7;
+    scale: 0.5;
+}
+
+.tableimg{
+    scale: 0.8;
+}
+.boydiv{
+    position: absolute;
+    top: 53%;
+    left: 37%;
+    z-index: 2;
+}
+.botdiv{
+    position: absolute;
+    top: 40%;
+    left: 37%;
+    z-index: 2;
+    color: rgb(87, 7, 7);
+    font-size: 18px;
+    text-align: center;
+    font-family:   monospace;
+    font-weight: 700;
+    padding: 5px 30px;
+    background:url("images/namebg.png");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    border-radius: 80px;
+}
+.youdiv{
+    position: absolute;
+    top: 40%;
+    left: 55%;
+    z-index: 2;
+    color: rgb(87, 7, 7);
+    font-size: 18px;
+    text-align: center;
+    font-family:   monospace;
+    font-weight: 700;
+    padding: 5px 30px;
+    background:url("images/namebg.png");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    border-radius: 80px;
+}
+.rock{
+    top: 90%;
+    left: 35%;
+    transform: translate(-50%,-50%);
+    background-color: rgba(168, 168, 168, 0.8);
+}
+.rockin{
+    border: 2px dashed #4F5E27;
+    background:
+        linear-gradient( to bottom,  #d9d7d3 0%,  #c7c4bf 40%,  #b2afaa 100%
+        );
+}
+.paper{
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: rgba(227, 200, 112, 0.8);
+}
+.paperin{
+    border: 2px dashed #4F5E27;
+    background: linear-gradient(
+    to bottom,
+    #ffd873,
+    #f6bf3c,
+    #e8a91f
+);
+}
+.scissors{
+    top: 90%;
+    left: 65%;
+    transform: translate(-50%,-50%);
+    background-color: rgba(192, 192, 192, 0.8);
+}
+.scissorsin{
+    border: 2px dashed #4F5E27;
+    background: linear-gradient(
+    to bottom,
+    #88c8ff,
+    #59a8e8,
+    #3e8bd2
+);
+}
+.buttonout{
+    position: absolute;
+    z-index: 3;
+    padding: 10px;
+    border-radius: 50px;
+}
+.actualbutton{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 50px;               
+    border-radius: 50px;
+    cursor: pointer;
+}
+.actualbutton img{
+    margin-bottom: 10px;
+    margin-right: 5px;
+    
+}
+.rock img{
+    scale: 0.8;
+}
+.paper img{
+    margin-top: 8px;
+    scale: 0.7;
+}
+.scissors img{
+    margin-top: 8px;
+    scale: 0.58;
+}
+.actualbutton p{
+    font-size: 18px;
+    font-weight: bold;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.rockin p{
+    color: #464645;
+}
+.paperin p{
+    color: #7c5a0b;
+}
+.scissorsin p{
+    color: #2e2060;
+}
+.girldiv{
+    position: absolute;
+    top: 53%;
+    left: 55%;
+    z-index: 2;
+}
+.boystyle{
+    scale:1.5;
+}
+.girlstyle{
+    scale:1.5;
+}
+.heading{
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 2;
+}
+
+#overlay{
+    position:fixed;
+    inset:0;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    backdrop-filter:blur(8px);
+    background:rgba(0,0,0,.2);
+
+    z-index:5;
+}
+.card{
+    width:500px;
+    height:540px;
+
+    background:url("images/woodenboard.png") no-repeat center;
+    background-size:cover;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    text-align:center;
+
+}
+.top-decoration{
+    margin-top:80px;
+    scale:1.5;
+    margin-bottom:35px;
+}
+.startbutton{
+    width:200px;
+    height:50px;
+     background: linear-gradient(to bottom, #9AB65A 0%, #7C9048 50%, #5D6E2F 100%);
+    border-radius:30px;
+    font-size:20px;
+    font-weight:bold;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    cursor:pointer;   
+    border: 2px solid #4F5E27;
+    color: #F5F0D8;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+    margin-top: 20px;
+}
+.card p{
+    font-size:18px;
+    line-height:0.8;
+    font-weight:bold;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color:#6d3902;
+}
+.card ul{
+    list-style-type: disc;
+    margin-left: 20px;
+    text-align: left;
+    font-size:16px;
+    font-weight:700;
+    line-height:1.5;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color:#4F5E27;
+}
+.card h2{
+    font-size:24px;
+    font-weight:bold;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color:#8d0023;
+    margin-bottom:5px;
+}
+.rules{
+    border: 2px dashed #4F5E27;
+    margin-left: 90px;
+    margin-right: 90px;
+}
+.hide{
+    opacity:0;
+    pointer-events:none;
+    transition:.5s;
+}
+.scoreboard{
+    position: absolute;
+    
+    z-index: 2;
+    width: 200px;
+    height: 300px;
+    scale: 1.5;
+    background:url("images/scorebg.png");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+}
+.boyscore{
+    top: 40%;
+    left: 12%;
+}
+.girlscore{
+    top: 40%;
+    left: 80%;
+}
+.scoreboard p{
+    font-size: 18px;
+    font-weight: 700;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #4F5E27;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+.line{
+    width:100px;
+    height:1px;
+    background-color: #4F5E27;
+    margin: 2px auto;
+    margin-bottom: 10px;
+}
+#scoreboy,
+#scoregirl{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+
+    width: 110px;
+    margin: 0 auto;
+}
+
+.score-cell{
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.score-cell img{
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.gameover-overlay{
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    backdrop-filter: blur(8px);
+    background: rgba(0,0,0,.35);
+
+    z-index: 999;
+}
+
+.gameover-card{
+    width: 520px;
+    height: 540px;
+
+    background: url("images/woodenboard.png") no-repeat center;
+    background-size: cover;
+
+    text-align: center;
+
+    padding: 40px;
+
+    animation: popup .4s ease;
+}
+
+@keyframes popup{
+    from{
+        transform: scale(.7);
+        opacity:0;
+    }
+    to{
+        transform: scale(1);
+        opacity:1;
+    }
+}
+
+.gameover-card img{
+    width:120px;
+    scale:1.8;
+    margin-top:70px;
+    margin-bottom:50px;
+}
+
+.gameover-card h1{
+    color:#8d0023;
+    font-size:42px;
+    margin-top:10px;
+    margin-bottom:10px;
+    text-align: center;
+    font-family:'Courier New', Courier, monospace
+}
+
+.gameover-card p{
+    color:#4F5E27;
+    font-size:18px;
+    font-weight:bold;
+    line-height:1.4;
+    text-align: center;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+.final-score{
+    display:flex;
+    justify-content:center;
+    gap:40px;
+
+    margin-top:25px;
+    margin-bottom:30px;
+
+    font-size:22px;
+    font-weight:bold;
+    color:#6d3902;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.replay-btn{
+    width:220px;
+    height:55px;
+
+    border:none;
+    cursor:pointer;
+
+    border-radius:40px;
+
+    background: linear-gradient(
+        to bottom,
+        #9AB65A,
+        #7C9048,
+        #5D6E2F
+    );
+
+    color:#F5F0D8;
+    font-size:20px;
+    font-weight:bold;
+
+    border:2px solid #4F5E27;
+
+    text-shadow:1px 1px 2px rgba(0,0,0,.3);
+}
+
+.replay-btn:hover{
+    transform: scale(1.05);
+}

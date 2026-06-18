@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="heading">
+        <img src="images/heading.png" alt="Heading">
+    </div>
+    <div class="container">
+        <div class="table">
+            <img class="icecream" id="ice" src="images/ice1.png" alt="ice cream">
+            <img id="tableimg" src="images/table.png" alt="Table">
+
+        </div>
+        <div class="botdiv" id="botdiv">BOT</div>
+        <div class="boydiv">
+            <img id="boyimg" class="boystyle" src="images/boy.png" alt="boy">
+        </div>
+        <div class="youdiv" id="youdiv">YOU</div>
+        <div class="girldiv">
+            <img id="girlimg" class="girlstyle" src="images/girl.png" alt="girl">
+        </div>
+    </div>
+
+    <div class="buttonout rock">
+        <div class="actualbutton rockin" id="rockclick">
+            <img src="images/rock.png" alt="Rock">
+            <p>ROCK</p>
+        </div>
+    </div>
+    <div class="buttonout paper">
+        <div class="actualbutton paperin" id="paperclick">
+            <img src="images/paper2.png" alt="Paper">
+            <p>PAPER</p>
+        </div>
+    </div>
+    <div class="buttonout scissors">
+        <div class="actualbutton scissorsin" id="scissorsclick">
+            <img src="images/scissors.png" alt="Scissors">
+            <p>SCISSORS</p>
+        </div>
+    </div>
+
+    <div class="scoreboard boyscore">
+        <p>BOT</p>
+        <div class="line"></div>
+        <div id="scoreboy"></div>
+    </div>
+    <div class="scoreboard girlscore">
+        <p>GIRL</p>
+        <div class="line"></div>
+        <div id="scoregirl"></div>
+    </div>
+   
+  <div id="overlay">
+
+        <div class="card">
+
+
+            <div class="top-decoration">
+                <img src="images/boardheading.png" alt="ice cream">
+            </div>
+
+            <div class="rules">
+            <h2>Rules:</h2>
+             <ul>
+                <li>Rock beats Scissors</li>
+                <li>Scissors beats Paper</li>
+                <li>Paper beats Rock</li>
+             </ul>
+            <p>Winner gets to eat!</p>
+            <p>Loser has to run!</p>
+            </div>
+
+            <button class="startbutton" id="startBtn">
+                GET STARTED
+            </button>
+
+        </div>
+
+    </div>
+
+    <div id="gameOverOverlay" class="gameover-overlay hide">
+
+    <div class="gameover-card">
+
+        <img id="winnerBadge" src="images/trophy.png" alt="winner">
+
+        <h1 id="gameResult"></h1>
+
+        <p id="gameMessage">
+            
+        </p>
+
+        <div class="final-score">
+            <span id="finalBot">BOT : 0</span>
+            <span id="finalGirl">GIRL : 0</span>
+        </div>
+
+        <button id="replayBtn" class="replay-btn">
+            PLAY AGAIN
+        </button>
+
+    </div>
+
+</div>
+    <script src="index.js"></script>
+</body>
+</html>
