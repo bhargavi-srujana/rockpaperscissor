@@ -104,8 +104,6 @@ let animationInterval;
 function StartAnimation(){
     clearInterval(animationInterval); 
     let i=0;
-    botdiv.classList.add("hide");
-    youdiv.classList.add("hide");
     animationInterval = setInterval(function(){
         boy.src = boyStart[i];
         
@@ -294,11 +292,7 @@ function addBotPoint(){
 
     botScore++;
 
-//     if(chances === 5){
-//     setTimeout(()=>{
-//         showGameOver("bot");
-//     },1000);
-// }
+
 }
 
 function addGirlPoint(){
@@ -311,11 +305,7 @@ function addGirlPoint(){
 
     girlScore++;
 
-//     if(chances === 5){
-//     setTimeout(()=>{
-//         showGameOver("girl");
-//     },1000);
-// }
+
 }
 
 
