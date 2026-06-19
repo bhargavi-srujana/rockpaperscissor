@@ -1,3 +1,27 @@
+const imageCache = {};
+
+function preloadImages(imageList) {
+    return Promise.all(
+        imageList.map(src => {
+            return new Promise(resolve => {
+                const img = new Image();
+
+                img.onload = () => {
+                    imageCache[src] = img;
+                    resolve();
+                };
+
+                img.onerror = () => {
+                    console.log("Failed:", src);
+                    resolve();
+                };
+
+                img.src = src;
+            });
+        })
+    );
+}
+
 const boyStart =[
     "images/boy1.png",
     "images/boy1.png",
@@ -95,6 +119,30 @@ const tableImages=[
     "images/ice7.png",
     "images/ice8.png",
 ]
+
+const allImages = [
+    ...boyStart,
+    ...girlStart,
+    ...boyShake,
+    ...girlShake,
+    ...boyrun,
+    ...girlrun,
+    ...boyeat,
+    ...girleat,
+    ...tableImages,
+
+    "images/boyrock.png",
+    "images/boypaper.png",
+    "images/boyscissors.png",
+
+    "images/girlrock.png",
+    "images/girlpaper.png",
+    "images/girlscissors.png",
+
+    "images/icecream.png"
+];
+
+
 const botdiv=document.getElementById("botdiv");
 const youdiv=document.getElementById("youdiv");
 const boy=document.getElementById("boyimg");
@@ -120,11 +168,18 @@ function StartAnimation(){
 const overlay = document.getElementById("overlay");
 const btn = document.getElementById("startBtn");
 
-btn.addEventListener("click",()=>{
+preloadImages([...new Set(allImages)])
+.then(() => {
 
-    overlay.classList.add("hide");
-    StartAnimation();
+    btn.disabled = false;
+    btn.textContent = "Start";
 
+    btn.addEventListener("click", () => {
+        overlay.classList.add("hide");
+        StartAnimation();
+    });
+
+    console.log("All images loaded");
 });
 
 const rock=document.getElementById("rockclick");
@@ -205,7 +260,7 @@ function GirlWin(){
         if(i < boyrun.length){
             boy.src = boyrun[i];
         }
-        if(girleat[i]=="images/girleat1.png"){
+        if(i < girleat.length &&girleat[i]=="images/girleat1.png"){
             girl.style.transform = "translateX(-10px)";
         }
         else{
